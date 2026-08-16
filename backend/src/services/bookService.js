@@ -1,7 +1,50 @@
-import { Book } from "../models/index.js";
+import { Book, Author, BookAuthor } from "../models/index.js";
+import { Op } from "sequelize";
 
-export const getAllBooks = async () => {
+export const getAllBooks = async ({ search, availability }) => {
+    const where = {};
+
+    if (search) {
+        where[Op.or] = [
+            {
+                title: {
+                    [Op.iLike]: `%${search}%`,
+                },
+            },
+            {
+                isbn: {
+                    [Op.iLike]: `%${search}%`,
+                },
+            },
+            {
+                category: {
+                    [Op.iLike]: `%${search}%`,
+                },
+            },
+        ];
+    }
+
+    if (availability) {
+        if (!["available", "unavailable"].includes(availability)) {
+            const error = new Error("Availability must be either available or unavailable");
+
+            error.statusCode = 400;
+            throw error;
+        }
+
+        if (availability === "available") {
+            where.availableCopies = {
+                [Op.gt]: 0,
+            };
+        }
+
+        if (availability === "unavailable") {
+            where.availableCopies = 0;
+        }
+    }
+
     const books = await Book.findAll({
+        where,
         order: [["createdAt", "DESC"]],
     });
 
@@ -9,7 +52,18 @@ export const getAllBooks = async () => {
 };
 
 export const getBookById = async (bookId) => {
-    const book = await Book.findByPk(bookId);
+    const book = await Book.findByPk(bookId, {
+        include: [
+            {
+                model: Author,
+                as: "authors",
+                attributes: ["id", "name", "bio"],
+                through: {
+                    attributes: [],
+                },
+            },
+        ],
+    });
 
     if (!book) {
         const error = new Error("Book not found");
@@ -113,5 +167,46 @@ export const deleteBook = async (bookId) => {
 
     return {
         id: bookId,
+    };
+};
+
+export const assignAuthorToBook = async (bookId, authorId) => {
+    const book = await Book.findByPk(bookId);
+
+    if (!book) {
+        const error = new Error("Book not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    const author = await Author.findByPk(authorId);
+
+    if (!author) {
+        const error = new Error("Author not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    const existingAssignment = await BookAuthor.findOne({
+        where: {
+            bookId,
+            authorId,
+        },
+    });
+
+    if (existingAssignment) {
+        const error = new Error("Author is already assigned to this book");
+        error.statusCode = 409;
+        throw error;
+    }
+
+    await BookAuthor.create({
+        bookId,
+        authorId,
+    });
+
+    return {
+        bookId,
+        authorId,
     };
 };

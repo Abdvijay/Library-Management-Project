@@ -1,8 +1,13 @@
-import { getAllBooks, getBookById, createBook, updateBook, deleteBook } from "../services/bookService.js";
+import { getAllBooks, getBookById, createBook, updateBook, deleteBook, assignAuthorToBook } from "../services/bookService.js";
 
 export const getBooks = async (request, reply) => {
     try {
-        const books = await getAllBooks();
+        const { search, availability } = request.query;
+
+        const books = await getAllBooks({
+            search,
+            availability,
+        });
 
         return reply.code(200).send({
             success: true,
@@ -11,9 +16,9 @@ export const getBooks = async (request, reply) => {
     } catch (error) {
         request.log.error(error);
 
-        return reply.code(500).send({
+        return reply.code(error.statusCode || 500).send({
             success: false,
-            message: "Unable to fetch books",
+            message: error.statusCode ? error.message : "Unable to fetch books",
         });
     }
 };
@@ -126,6 +131,27 @@ export const deleteBookController = async (request, reply) => {
         return reply.code(error.statusCode || 500).send({
             success: false,
             message: error.statusCode ? error.message : "Unable to delete book",
+        });
+    }
+};
+
+export const assignAuthorController = async (request, reply) => {
+    try {
+        const { bookId, authorId } = request.params;
+
+        const result = await assignAuthorToBook(bookId, authorId);
+
+        return reply.code(201).send({
+            success: true,
+            message: "Author assigned to book successfully",
+            data: result,
+        });
+    } catch (error) {
+        request.log.error(error);
+
+        return reply.code(error.statusCode || 500).send({
+            success: false,
+            message: error.statusCode ? error.message : "Unable to assign author to book",
         });
     }
 };

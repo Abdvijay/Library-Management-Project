@@ -8,13 +8,21 @@ import "./models/index.js";
 import jwtPlugin from "./plugins/jwt.js";
 import authRoutes from "./routes/authRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
+import authorRoutes from "./routes/authorRoutes.js";
+import issueRoutes from "./routes/issueRoutes.js";
+import memberRoutes from "./routes/memberRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 const app = Fastify({logger: true,});
 
 await app.register(cors, {origin: "http://localhost:5173",});
 await app.register(jwtPlugin);
 await app.register(authRoutes, {prefix: "/api/auth",});
-await app.register(bookRoutes, {prefix: "/api/books"})
+await app.register(bookRoutes, {prefix: "/api/books"});
+await app.register(authorRoutes, {prefix: "/api/authors"});
+await app.register(issueRoutes, {prefix: "/api/issues"});
+await app.register(memberRoutes, {prefix: "/api/members"});
+await app.register(dashboardRoutes, {prefix: "/api/dashboard"});
 
 app.get("/", async () => {
     return {
