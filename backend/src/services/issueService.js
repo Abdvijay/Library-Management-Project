@@ -1,4 +1,21 @@
 import { IssueRecord, Book, Member } from "../models/index.js";
+import { Op } from "sequelize";
+
+export const updateOverdueIssues = async () => {
+    await IssueRecord.update(
+        {
+            status: "OVERDUE",
+        },
+        {
+            where: {
+                status: "ISSUED",
+                dueDate: {
+                    [Op.lt]: new Date(),
+                },
+            },
+        },
+    );
+};
 
 export const createIssue = async ({ bookId, memberId, dueDate }) => {
     const book = await Book.findByPk(bookId);
@@ -53,6 +70,7 @@ export const createIssue = async ({ bookId, memberId, dueDate }) => {
 };
 
 export const getAllIssues = async () => {
+    await updateOverdueIssues();
     return await IssueRecord.findAll({
         include: [
             {
@@ -71,6 +89,8 @@ export const getAllIssues = async () => {
 };
 
 export const getIssueById = async (issueId) => {
+    await updateOverdueIssues();
+    
     const issue = await IssueRecord.findByPk(issueId, {
         include: [
             {

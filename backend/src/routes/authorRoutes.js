@@ -1,10 +1,11 @@
-import { getAuthors, getAuthor, createAuthorController, updateAuthorController, deleteAuthorController } from "../controllers/authorController.js";
+import { getAuthors, getAuthor, getAuthorBooksController, createAuthorController, updateAuthorController, deleteAuthorController } from "../controllers/authorController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
 import roleMiddleware from "../middleware/roleMiddleware.js";
 
 const authorRoutes = async (app) => {
     app.get("/",{preHandler: authMiddleware,},getAuthors);
+    app.get("/:id/books", {preHandler: authMiddleware}, getAuthorBooksController);
     app.get("/:id",{preHandler: authMiddleware,},getAuthor);
     app.post("/",{preHandler: [authMiddleware, roleMiddleware(["LIBRARIAN"])],},createAuthorController);
     app.put("/:id",{preHandler: [authMiddleware, roleMiddleware(["LIBRARIAN"])],},updateAuthorController);

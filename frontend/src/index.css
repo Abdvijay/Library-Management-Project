@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+/* Dialog scrollbar */
+.dialog-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dialog-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dialog-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.15);
+  border-radius: 9999px;
+}
+
+.dialog-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / 0.25);
+}

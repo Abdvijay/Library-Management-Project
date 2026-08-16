@@ -1,5 +1,5 @@
 import { getBooks, getBook, createBookController, updateBookController, deleteBookController,
-    assignAuthorController
+    assignAuthorController, removeAuthorFromBookController
 } from "../controllers/bookController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -21,6 +21,13 @@ const bookRoutes = async (app) => {
             roleMiddleware(["LIBRARIAN"]),
         ]}, 
         updateBookController
+    );
+    app.delete(
+        "/:bookId/authors/:authorId",
+        {
+            preHandler: [authMiddleware, roleMiddleware(["LIBRARIAN"])],
+        },
+        removeAuthorFromBookController
     );
     app.delete("/:id",{ 
         preHandler: [

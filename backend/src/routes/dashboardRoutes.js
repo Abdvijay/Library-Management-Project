@@ -1,15 +1,14 @@
-import { getDashboard } from "../controllers/dashboardController.js";
+import { getDashboardStatsController } from "../controllers/dashboardController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
-import roleMiddleware from "../middleware/roleMiddleware.js";
 
 const dashboardRoutes = async (app) => {
     app.get(
         "/",
         {
-            preHandler: [authMiddleware, roleMiddleware(["LIBRARIAN"])],
+            preHandler: authMiddleware,
         },
-        getDashboard
+        getDashboardStatsController
     );
 };
 

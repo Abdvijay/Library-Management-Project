@@ -210,3 +210,38 @@ export const assignAuthorToBook = async (bookId, authorId) => {
         authorId,
     };
 };
+
+export const removeAuthorFromBook = async (bookId, authorId) => {
+    const book = await Book.findByPk(bookId);
+
+    if (!book) {
+        const error = new Error("Book not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    const author = await Author.findByPk(authorId);
+
+    if (!author) {
+        const error = new Error("Author not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    const relation = await BookAuthor.findOne({
+        where: {
+            bookId,
+            authorId,
+        },
+    });
+
+    if (!relation) {
+        const error = new Error("Author is not assigned to this book");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    await relation.destroy();
+
+    return true;
+};

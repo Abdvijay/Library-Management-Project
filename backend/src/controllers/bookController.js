@@ -1,4 +1,4 @@
-import { getAllBooks, getBookById, createBook, updateBook, deleteBook, assignAuthorToBook } from "../services/bookService.js";
+import { getAllBooks, getBookById, createBook, updateBook, deleteBook, assignAuthorToBook, removeAuthorFromBook } from "../services/bookService.js";
 
 export const getBooks = async (request, reply) => {
     try {
@@ -152,6 +152,26 @@ export const assignAuthorController = async (request, reply) => {
         return reply.code(error.statusCode || 500).send({
             success: false,
             message: error.statusCode ? error.message : "Unable to assign author to book",
+        });
+    }
+};
+
+export const removeAuthorFromBookController = async (request, reply) => {
+    try {
+        const { bookId, authorId } = request.params;
+
+        await removeAuthorFromBook(Number(bookId), Number(authorId));
+
+        return reply.code(200).send({
+            success: true,
+            message: "Author removed from book successfully",
+        });
+    } catch (error) {
+        request.log.error(error);
+
+        return reply.code(error.statusCode || 500).send({
+            success: false,
+            message: error.message || "Unable to remove author from book",
         });
     }
 };

@@ -1,4 +1,4 @@
-import { getAllAuthors, getAuthorById, createAuthor, updateAuthor, deleteAuthor } from "../services/authorService.js";
+import { getAllAuthors, getAuthorById, getAuthorBooks, createAuthor, updateAuthor, deleteAuthor } from "../services/authorService.js";
 
 export const getAuthors = async (request, reply) => {
     try {
@@ -117,6 +117,26 @@ export const deleteAuthorController = async (request, reply) => {
         return reply.code(error.statusCode || 500).send({
             success: false,
             message: error.statusCode ? error.message : "Unable to delete author",
+        });
+    }
+};
+
+export const getAuthorBooksController = async (request, reply) => {
+    try {
+        const { id } = request.params;
+
+        const books = await getAuthorBooks(id);
+
+        return reply.code(200).send({
+            success: true,
+            data: books,
+        });
+    } catch (error) {
+        request.log.error(error);
+
+        return reply.code(error.statusCode || 500).send({
+            success: false,
+            message: error.statusCode ? error.message : "Unable to fetch author books",
         });
     }
 };

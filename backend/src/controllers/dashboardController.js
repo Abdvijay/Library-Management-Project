@@ -1,6 +1,6 @@
 import { getDashboardStats } from "../services/dashboardService.js";
 
-export const getDashboard = async (request, reply) => {
+export const getDashboardStatsController = async (request, reply) => {
     try {
         const stats = await getDashboardStats();
 

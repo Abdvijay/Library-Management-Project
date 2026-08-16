@@ -15,7 +15,20 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 const app = Fastify({logger: true,});
 
-await app.register(cors, {origin: "http://localhost:5173",});
+await app.register(cors, {origin: "http://localhost:5173",
+    methods: [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+  ],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+  ],
+});
 await app.register(jwtPlugin);
 await app.register(authRoutes, {prefix: "/api/auth",});
 await app.register(bookRoutes, {prefix: "/api/books"});
