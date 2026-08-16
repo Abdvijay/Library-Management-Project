@@ -125,6 +125,14 @@ const MobileNavigation = ({ role, onNavigate }: MobileNavigationProps) => {
             label: "Books",
             to: "/books",
           },
+          {
+            label: "My Issues",
+            to: "/my-issues",
+          },
+          {
+            label: "My Profile",
+            to: "/profile",
+          },
         ];
 
   return (

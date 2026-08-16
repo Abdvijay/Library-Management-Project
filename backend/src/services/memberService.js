@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
 import { Member, IssueRecord, Book } from "../models/index.js";
 
+import { updateOverdueIssues } from "./issueService.js";
+
 export const getAllMembers = async () => {
     const members = await Member.findAll({
         attributes: ["id", "name", "email", "role", "createdAt"],
@@ -105,6 +107,8 @@ export const getMemberById = async (memberId) => {
 };
 
 export const getMemberIssues = async (memberId) => {
+    await updateOverdueIssues();
+    
     const member = await Member.findByPk(memberId);
 
     if (!member) {

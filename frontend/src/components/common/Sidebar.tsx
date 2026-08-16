@@ -53,6 +53,11 @@ const Sidebar = () => {
       icon: BookOpen,
     },
     {
+      label: "My Issues",
+      to: "/my-issues",
+      icon: BookOpen,
+    },
+    {
       label: "My Profile",
       to: "/profile",
       icon: UserRound,

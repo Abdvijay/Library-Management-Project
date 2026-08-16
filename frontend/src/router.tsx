@@ -15,6 +15,7 @@ import Authors from "./pages/Authors";
 import Members from "./pages/Members";
 import Issues from "./pages/Issues";
 import Profile from "./pages/Profile";
+import MyIssues from "./pages/MyIssues";
 
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import AppLayout from "./components/common/AppLayout";
@@ -99,6 +100,18 @@ const membersRoute = createRoute({
   ),
 });
 
+const myIssuesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/my-issues",
+  component: () => (
+    <ProtectedRoute allowedRoles={["MEMBER"]}>
+      <AppLayout>
+        <MyIssues />
+      </AppLayout>
+    </ProtectedRoute>
+  ),
+});
+
 const issuesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/issues",
@@ -132,6 +145,7 @@ const routeTree = rootRoute.addChildren([
   booksRoute,
   authorsRoute,
   membersRoute,
+  myIssuesRoute,
   issuesRoute,
   profileRoute,
 ]);

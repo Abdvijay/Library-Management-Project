@@ -8,15 +8,22 @@ import {
 
 import { useEffect, useState } from "react";
 
+import { getUser } from "../services/authStorage";
 import { getBooks, type AvailabilityFilter } from "../services/bookService";
 import AddBookDialog from "../components/common/AddBookDialog";
 import EditBookDialog from "../components/common/EditBookDialog";
 import DeleteBookDialog from "../components/common/DeleteBookDialog";
+import BookDetailsDialog from "../components/common/BookDetailsDialog";
 
 import type { Book } from "../types";
 import { Button } from "../components/ui/button";
 
 const Books = () => {
+
+  const user = getUser();
+
+  const isLibrarian = user?.role === "LIBRARIAN";
+  
   const [books, setBooks] = useState<Book[]>([]);
 
   const [loading, setLoading] = useState(true);
@@ -89,11 +96,13 @@ const Books = () => {
             Refresh
           </Button>
 
-          <AddBookDialog
-            onSuccess={() => {
-              fetchBooks();
-            }}
-          />
+          {isLibrarian && (
+            <AddBookDialog
+                onSuccess={() => {
+                fetchBooks();
+              }}
+            />
+          )}
         </div>
       </div>
 
@@ -252,17 +261,22 @@ const Books = () => {
                         )}
                       </td>
                       <td className="px-5 py-4 text-right">
-                        <div className="flex justify-end gap-2">
-                          <EditBookDialog
-                            book={book}
-                            onSuccess={() => fetchBooks()}
-                          />
+                          <div className="flex justify-end gap-2">
+                            <BookDetailsDialog book={book} />
+                            {isLibrarian && (
+                              <>
+                                <EditBookDialog
+                                  book={book}
+                                  onSuccess={() => fetchBooks()}
+                                />
 
-                          <DeleteBookDialog
-                            book={book}
-                            onSuccess={() => fetchBooks()}
-                          />
-                        </div>
+                                <DeleteBookDialog
+                                  book={book}
+                                  onSuccess={() => fetchBooks()}
+                                />
+                              </>
+                            )}
+                          </div>
                       </td>
                     </tr>
                   ))}
@@ -298,15 +312,22 @@ const Books = () => {
                       </span>
                     )}
 
-                    <EditBookDialog
-                      book={book}
-                      onSuccess={() => fetchBooks()}
-                    />
+                    <div className="flex items-center gap-2">
+                      <BookDetailsDialog book={book} />
+                      {isLibrarian && (
+                        <>
+                          <EditBookDialog
+                            book={book}
+                            onSuccess={fetchBooks}
+                          />
 
-                    <DeleteBookDialog
-                      book={book}
-                      onSuccess={() => fetchBooks()}
-                    />
+                          <DeleteBookDialog
+                            book={book}
+                            onSuccess={fetchBooks}
+                          />
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
 
