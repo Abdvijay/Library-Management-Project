@@ -157,9 +157,9 @@ const MyDashboard = () => {
           </div>
         ) : (
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-            <div className="overflow-x-auto">
+            <div className="my-dashboard-scrollbar max-h-[520px] overflow-auto">
               <table className="w-full min-w-[700px]">
-                <thead>
+                <thead className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur-md">
                   <tr className="border-b border-white/10">
                     <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                       Book

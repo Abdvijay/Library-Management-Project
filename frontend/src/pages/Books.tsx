@@ -181,9 +181,9 @@ const Books = () => {
       {!loading && !error && books.length > 0 && (
         <>
           <div className="hidden overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:block">
-            <div className="overflow-x-auto">
+            <div className="books-scrollbar max-h-[520px] overflow-auto">
               <table className="w-full min-w-[800px]">
-                <thead>
+                <thead className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur-md">
                   <tr className="border-b border-white/10">
                     <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                       Book
@@ -286,13 +286,13 @@ const Books = () => {
           </div>
 
           {/* Mobile Cards */}
-          <div className="grid gap-3 md:hidden">
+          <div className="books-scrollbar max-h-[600px] grid gap-3 overflow-y-auto md:hidden">
             {books.map((book) => (
               <div
                 key={book.id}
                 className="rounded-2xl border border-white/10 bg-white/5 p-4"
               >
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex flex-col gap-3">
                   <div className="min-w-0">
                     <h2 className="truncate font-semibold text-white">
                       {book.title}
@@ -301,7 +301,7 @@ const Books = () => {
                     <p className="mt-1 text-xs text-slate-500">{book.isbn}</p>
                   </div>
 
-                  <div className="flex shrink-0 items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     {book.availableCopies > 0 ? (
                       <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-xs font-medium text-emerald-300">
                         Available

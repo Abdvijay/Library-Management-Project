@@ -17,3 +17,141 @@
 .dialog-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgb(255 255 255 / 0.25);
 }
+
+.books-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+.books-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.books-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.books-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+.books-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.authors-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+.authors-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.authors-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.authors-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+.authors-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.members-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+.members-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.members-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.members-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+.members-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.issues-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+.issues-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.issues-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.issues-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+.issues-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.my-dashboard-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+.my-dashboard-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.my-dashboard-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.my-dashboard-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+.my-dashboard-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.my-issues-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+.my-issues-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.my-issues-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.my-issues-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+.my-issues-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}

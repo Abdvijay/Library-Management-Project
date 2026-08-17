@@ -152,9 +152,9 @@ const Members = () => {
         <>
           {/* Desktop table */}
           <div className="hidden overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] md:block">
-            <div className="overflow-x-auto">
+            <div className="members-scrollbar max-h-[520px] overflow-auto">
               <table className="w-full">
-                <thead>
+                <thead className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur-md">
                   <tr className="border-b border-white/10">
                     <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                       Member
@@ -257,7 +257,7 @@ const Members = () => {
           </div>
 
           {/* Mobile cards */}
-          <div className="space-y-3 md:hidden">
+          <div className="members-scrollbar max-h-[600px] space-y-3 overflow-y-auto md:hidden">
             {filteredMembers.map((member) => (
               <div
                 key={member.id}
@@ -302,7 +302,7 @@ const Members = () => {
                         : "—"}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="mt-4 grid grid-cols-3 gap-2 [&>button]:w-full">
                       <MemberHistoryDialog
                         member={member}
                       />

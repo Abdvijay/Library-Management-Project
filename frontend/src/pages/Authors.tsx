@@ -153,9 +153,9 @@ const Authors = () => {
         <>
           {/* Desktop table */}
           <div className="hidden overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] md:block">
-            <div className="overflow-x-auto">
+            <div className="authors-scrollbar max-h-[520px] overflow-auto">
               <table className="w-full">
-                <thead>
+                <thead className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur-md">
                   <tr className="border-b border-white/10">
                     <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                       Author
@@ -240,7 +240,7 @@ const Authors = () => {
           </div>
 
           {/* Mobile cards */}
-          <div className="space-y-3 md:hidden">
+          <div className="authors-scrollbar max-h-[600px] space-y-3 overflow-y-auto md:hidden">
             {filteredAuthors.map((author) => (
               <div
                 key={author.id}
@@ -266,7 +266,7 @@ const Authors = () => {
                       {author.bio || "No biography available."}
                     </p>
 
-                    <div className="flex justify-end gap-2">
+                    <div className="flex justify-end gap-2 pt-5">
                       <AuthorBooksDialog
                         author={author}
                       />

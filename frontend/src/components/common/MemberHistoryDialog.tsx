@@ -60,9 +60,9 @@ const MemberHistoryDialog = ({ member }: MemberHistoryDialogProps) => {
       <DialogTrigger asChild>
         <button
           type="button"
-          className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
         >
-          <BookOpen className="size-3.5" />
+          <BookOpen className="size-3.5 shrink-0" />
           History
         </button>
       </DialogTrigger>

@@ -67,7 +67,7 @@ const Sidebar = () => {
   const links = user?.role === "LIBRARIAN" ? librarianLinks : memberLinks;
 
   return (
-    <aside className="hidden min-h-[calc(100vh-4rem)] w-64 shrink-0 border-r border-white/10 bg-slate-950 lg:block">
+    <aside className="hidden min-h-[calc(100vh-4rem)] w-50 shrink-0 border-r border-white/10 bg-slate-950 lg:block">
       <div className="sticky top-16 p-4">
         <div className="mb-4 px-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
