@@ -23,7 +23,7 @@ const BookDetailsDialog = ({ book }: BookDetailsDialogProps) => {
       <DialogTrigger asChild>
         <button
           type="button"
-          className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
+          className="inline-flex shrink-0 whitespace-nowrap items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
         >
           <BookOpen className="size-3.5" />
           View Details

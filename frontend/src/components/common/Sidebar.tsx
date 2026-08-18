@@ -67,15 +67,17 @@ const Sidebar = () => {
   const links = user?.role === "LIBRARIAN" ? librarianLinks : memberLinks;
 
   return (
-    <aside className="hidden min-h-[calc(100vh-4rem)] w-50 shrink-0 border-r border-white/10 bg-slate-950 lg:block">
+    <aside className="hidden min-h-[calc(100vh-4rem)] w-52 shrink-0 border-r border-white/10 bg-slate-950 lg:block">
       <div className="sticky top-16 p-4">
+        {/* Section heading */}
         <div className="mb-4 px-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
             Navigation
           </p>
         </div>
 
-        <nav className="space-y-1">
+        {/* Navigation */}
+        <nav className="space-y-1.5">
           {links.map((link) => {
             const Icon = link.icon;
 
@@ -84,17 +86,17 @@ const Sidebar = () => {
                 key={link.to}
                 to={link.to}
                 activeProps={{
-                  className: "bg-white text-slate-950",
+                  className:
+                    "group flex items-center gap-3 rounded-xl bg-white px-3 py-2.5 text-sm font-semibold text-slate-950 shadow-sm",
                 }}
                 inactiveProps={{
                   className:
-                    "text-slate-400 hover:bg-white/10 hover:text-white",
+                    "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-white/[0.07] hover:text-white",
                 }}
-                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition"
               >
-                <Icon className="size-4" />
+                <Icon className="size-4 shrink-0 transition-transform group-hover:scale-105" />
 
-                {link.label}
+                <span className="truncate">{link.label}</span>
               </Link>
             );
           })}

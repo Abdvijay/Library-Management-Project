@@ -137,176 +137,177 @@ const AddBookDialog = ({ onSuccess }: AddBookDialogProps) => {
         </Button>
       </DialogTrigger>
 
-        <DialogContent className="max-h-[90vh] overflow-hidden border-white/10 bg-slate-950 p-0 text-white sm:max-w-lg">
-            <div className="dialog-scrollbar max-h-[90vh] overflow-y-auto px-6 py-6">
-                <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                    <div className="flex size-9 items-center justify-center rounded-xl bg-white text-slate-950">
-                    <BookOpen className="size-4" />
-                    </div>
-                    Add Book
-                </DialogTitle>
+      <DialogContent className="w-[calc(100%-1.5rem)] max-w-lg overflow-hidden border-white/10 bg-slate-950 p-0 text-white shadow-2xl shadow-black/30 sm:w-full">
+        <div className="dialog-scrollbar max-h-[90vh] overflow-y-auto px-4 py-5 sm:px-6 sm:py-6">
+          <DialogHeader className="space-y-2">
+            <DialogTitle className="flex items-center gap-3 text-lg sm:text-xl">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-950">
+                <BookOpen className="size-4" />
+              </div>
 
-                <DialogDescription className="text-slate-400">
-                    Add a new book to the library collection.
-                </DialogDescription>
-                </DialogHeader>
+              <span>Add Book</span>
+            </DialogTitle>
 
-                <form onSubmit={handleSubmit} className="mt-4 space-y-5">
-                {error && (
-                    <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-300">
-                    {error}
-                    </div>
-                )}
+            <DialogDescription className="text-sm leading-5 text-slate-400">
+              Add a new book to the library collection.
+            </DialogDescription>
+          </DialogHeader>
 
-                {/* Title */}
-                <div>
-                    <label
-                    htmlFor="book-title"
-                    className="mb-2 block text-sm font-medium text-slate-300"
-                    >
-                    Title <span className="text-red-400">*</span>
-                    </label>
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            {error && (
+              <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-3.5 py-3 text-sm leading-5 text-red-300">
+                {error}
+              </div>
+            )}
 
-                    <input
-                    id="book-title"
-                    type="text"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                    placeholder="Enter book title"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
-                    />
-                </div>
+            {/* Title */}
+            <div>
+              <label
+                htmlFor="book-title"
+                className="mb-1.5 block text-sm font-medium text-slate-300"
+              >
+                Title <span className="text-red-400">*</span>
+              </label>
 
-                {/* ISBN */}
-                <div>
-                    <label
-                    htmlFor="book-isbn"
-                    className="mb-2 block text-sm font-medium text-slate-300"
-                    >
-                    ISBN <span className="text-red-400">*</span>
-                    </label>
-
-                    <input
-                    id="book-isbn"
-                    type="text"
-                    value={isbn}
-                    onChange={(event) => setIsbn(event.target.value)}
-                    placeholder="Enter ISBN"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
-                    />
-                </div>
-
-                {/* Category */}
-                <div>
-                    <label
-                    htmlFor="book-category"
-                    className="mb-2 block text-sm font-medium text-slate-300"
-                    >
-                    Category <span className="text-red-400">*</span>
-                    </label>
-
-                    <input
-                    id="book-category"
-                    type="text"
-                    value={category}
-                    onChange={(event) => setCategory(event.target.value)}
-                    placeholder="e.g. Programming"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
-                    />
-                </div>
-
-                {/* Copies + Year */}
-                <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                    <label
-                        htmlFor="book-copies"
-                        className="mb-2 block text-sm font-medium text-slate-300"
-                    >
-                        Total Copies <span className="text-red-400">*</span>
-                    </label>
-
-                    <input
-                        id="book-copies"
-                        type="number"
-                        min="1"
-                        value={totalCopies}
-                        onChange={(event) => setTotalCopies(event.target.value)}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-white/30 focus:bg-white/10"
-                    />
-                    </div>
-
-                    <div>
-                    <label
-                        htmlFor="book-year"
-                        className="mb-2 block text-sm font-medium text-slate-300"
-                    >
-                        Published Year
-                    </label>
-
-                    <input
-                        id="book-year"
-                        type="number"
-                        min="1000"
-                        max={new Date().getFullYear()}
-                        value={publishedYear}
-                        onChange={(event) => setPublishedYear(event.target.value)}
-                        placeholder="e.g. 2024"
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
-                    />
-                    </div>
-                </div>
-
-                {/* Description */}
-                <div>
-                    <label
-                    htmlFor="book-description"
-                    className="mb-2 block text-sm font-medium text-slate-300"
-                    >
-                    Description
-                    </label>
-
-                    <textarea
-                    id="book-description"
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value)}
-                    placeholder="Enter a short description"
-                    rows={4}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
-                    />
-                </div>
-
-                {/* Actions */}
-                <div className="flex justify-end gap-3 border-t border-white/10 pt-5">
-                    <button
-        type="button"
-        disabled={loading}
-        onClick={() => setOpen(false)}
-        className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
-        >
-        Cancel
-                    </button>
-
-                    <button
-                    type="submit"
-                    disabled={loading}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                    {loading ? (
-                        <>
-                        <Loader2 className="size-4 animate-spin" />
-                        Creating...
-                        </>
-                    ) : (
-                        <>
-                        <Plus className="size-4" />
-                        Create Book
-                        </>
-                    )}
-                    </button>
-                </div>
-                </form>
+              <input
+                id="book-title"
+                type="text"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                placeholder="Enter book title"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+              />
             </div>
+
+            {/* ISBN */}
+            <div>
+              <label
+                htmlFor="book-isbn"
+                className="mb-1.5 block text-sm font-medium text-slate-300"
+              >
+                ISBN <span className="text-red-400">*</span>
+              </label>
+
+              <input
+                id="book-isbn"
+                type="text"
+                value={isbn}
+                onChange={(event) => setIsbn(event.target.value)}
+                placeholder="Enter ISBN"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+              />
+            </div>
+
+            {/* Category */}
+            <div>
+              <label
+                htmlFor="book-category"
+                className="mb-1.5 block text-sm font-medium text-slate-300"
+              >
+                Category <span className="text-red-400">*</span>
+              </label>
+
+              <input
+                id="book-category"
+                type="text"
+                value={category}
+                onChange={(event) => setCategory(event.target.value)}
+                placeholder="e.g. Programming"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+              />
+            </div>
+
+            {/* Copies + Year */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="book-copies"
+                  className="mb-1.5 block text-sm font-medium text-slate-300"
+                >
+                  Total Copies <span className="text-red-400">*</span>
+                </label>
+
+                <input
+                  id="book-copies"
+                  type="number"
+                  min="1"
+                  value={totalCopies}
+                  onChange={(event) => setTotalCopies(event.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-white/30 focus:bg-white/10"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="book-year"
+                  className="mb-1.5 block text-sm font-medium text-slate-300"
+                >
+                  Published Year
+                </label>
+
+                <input
+                  id="book-year"
+                  type="number"
+                  min="1000"
+                  max={new Date().getFullYear()}
+                  value={publishedYear}
+                  onChange={(event) => setPublishedYear(event.target.value)}
+                  placeholder="e.g. 2024"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+                />
+              </div>
+            </div>
+
+            {/* Description */}
+            <div>
+              <label
+                htmlFor="book-description"
+                className="mb-1.5 block text-sm font-medium text-slate-300"
+              >
+                Description
+              </label>
+
+              <textarea
+                id="book-description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                placeholder="Enter a short description"
+                rows={3}
+                className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+              />
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-col-reverse gap-2.5 border-t border-white/10 pt-4 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                disabled={loading}
+                onClick={() => setOpen(false)}
+                className="inline-flex min-h-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin" />
+                    Creating...
+                  </>
+                ) : (
+                  <>
+                    <Plus className="size-4" />
+                    Create Book
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
       </DialogContent>
     </Dialog>
   );

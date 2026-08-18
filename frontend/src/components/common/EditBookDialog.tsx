@@ -245,24 +245,25 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
             </button>
           </DialogTrigger>
 
-          <DialogContent className="max-h-[90vh] overflow-hidden border-white/10 bg-slate-950 p-0 text-white sm:max-w-lg">
-            <div className="dialog-scrollbar max-h-[90vh] overflow-y-auto px-6 py-6">
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  <div className="flex size-9 items-center justify-center rounded-xl bg-white text-slate-950">
+          <DialogContent className="w-[calc(100%-1.5rem)] max-w-lg overflow-hidden border-white/10 bg-slate-950 p-0 text-white shadow-2xl shadow-black/30 sm:w-full">
+            <div className="dialog-scrollbar max-h-[90vh] overflow-y-auto px-4 py-5 sm:px-6 sm:py-6">
+              <DialogHeader className="space-y-2">
+                <DialogTitle className="flex items-center gap-3 text-lg sm:text-xl">
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-950">
                     <BookOpen className="size-4" />
                   </div>
-                  Edit Book
+
+                  <span>Edit Book</span>
                 </DialogTitle>
 
-                <DialogDescription className="text-slate-400">
+                <DialogDescription className="text-sm leading-5 text-slate-400">
                   Update the information for this book.
                 </DialogDescription>
               </DialogHeader>
 
-              <form onSubmit={handleSubmit} className="mt-5 space-y-5">
+              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                 {error && (
-                  <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+                  <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-3.5 py-3 text-sm leading-5 text-red-300">
                     {error}
                   </div>
                 )}
@@ -271,7 +272,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                 <div>
                   <label
                     htmlFor={`edit-title-${book.id}`}
-                    className="mb-2 block text-sm font-medium text-slate-300"
+                    className="mb-1.5 block text-sm font-medium text-slate-300"
                   >
                     Title <span className="text-red-400">*</span>
                   </label>
@@ -281,7 +282,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                     type="text"
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
                   />
                 </div>
 
@@ -289,7 +290,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                 <div>
                   <label
                     htmlFor={`edit-isbn-${book.id}`}
-                    className="mb-2 block text-sm font-medium text-slate-300"
+                    className="mb-1.5 block text-sm font-medium text-slate-300"
                   >
                     ISBN <span className="text-red-400">*</span>
                   </label>
@@ -299,7 +300,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                     type="text"
                     value={isbn}
                     onChange={(event) => setIsbn(event.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-white/30 focus:bg-white/10"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-white/30 focus:bg-white/10"
                   />
                 </div>
 
@@ -307,7 +308,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                 <div>
                   <label
                     htmlFor={`edit-category-${book.id}`}
-                    className="mb-2 block text-sm font-medium text-slate-300"
+                    className="mb-1.5 block text-sm font-medium text-slate-300"
                   >
                     Category <span className="text-red-400">*</span>
                   </label>
@@ -317,7 +318,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                     type="text"
                     value={category}
                     onChange={(event) => setCategory(event.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-white/30 focus:bg-white/10"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-white/30 focus:bg-white/10"
                   />
                 </div>
 
@@ -326,7 +327,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                   <div>
                     <label
                       htmlFor={`edit-copies-${book.id}`}
-                      className="mb-2 block text-sm font-medium text-slate-300"
+                      className="mb-1.5 block text-sm font-medium text-slate-300"
                     >
                       Total Copies <span className="text-red-400">*</span>
                     </label>
@@ -337,11 +338,11 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                       min={Math.max(1, issuedCopies)}
                       value={totalCopies}
                       onChange={(event) => setTotalCopies(event.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-white/30 focus:bg-white/10"
+                      className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-white/30 focus:bg-white/10"
                     />
 
                     {issuedCopies > 0 && (
-                      <p className="mt-1.5 text-xs text-slate-500">
+                      <p className="mt-1.5 text-xs leading-5 text-slate-500">
                         {issuedCopies}{" "}
                         {issuedCopies === 1 ? "copy is" : "copies are"} currently
                         issued.
@@ -352,7 +353,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                   <div>
                     <label
                       htmlFor={`edit-year-${book.id}`}
-                      className="mb-2 block text-sm font-medium text-slate-300"
+                      className="mb-1.5 block text-sm font-medium text-slate-300"
                     >
                       Published Year
                     </label>
@@ -364,7 +365,8 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                       max={new Date().getFullYear()}
                       value={publishedYear}
                       onChange={(event) => setPublishedYear(event.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+                      placeholder="e.g. 2024"
+                      className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
                     />
                   </div>
                 </div>
@@ -373,7 +375,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                 <div>
                   <label
                     htmlFor={`edit-description-${book.id}`}
-                    className="mb-2 block text-sm font-medium text-slate-300"
+                    className="mb-1.5 block text-sm font-medium text-slate-300"
                   >
                     Description
                   </label>
@@ -382,25 +384,25 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                     id={`edit-description-${book.id}`}
                     value={description}
                     onChange={(event) => setDescription(event.target.value)}
-                    rows={4}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
+                    rows={3}
+                    className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10"
                   />
                 </div>
 
                 {/* Authors */}
                 <div className="space-y-3">
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-slate-300">
+                    <label className="mb-1.5 block text-sm font-medium text-slate-300">
                       Authors
                     </label>
 
                     {authorLoading ? (
-                      <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-400">
-                        <Loader2 className="size-4 animate-spin" />
+                      <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3.5 py-3 text-sm text-slate-400">
+                        <Loader2 className="size-4 shrink-0 animate-spin" />
                         Loading authors...
                       </div>
                     ) : assignedAuthors.length === 0 ? (
-                      <div className="rounded-xl border border-dashed border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-500">
+                      <div className="rounded-xl border border-dashed border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm text-slate-500">
                         No authors assigned to this book.
                       </div>
                     ) : (
@@ -408,10 +410,10 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                         {assignedAuthors.map((author) => (
                           <div
                             key={author.id}
-                            className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+                            className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/5 px-3.5 py-3"
                           >
                             <div className="min-w-0">
-                              <p className="text-sm font-medium text-white">
+                              <p className="truncate text-sm font-medium text-white">
                                 {author.name}
                               </p>
 
@@ -422,23 +424,21 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
 
                             <button
                               type="button"
-                              onClick={() =>
-                                setAuthorToRemove(author)
-                              }
+                              onClick={() => setAuthorToRemove(author)}
                               disabled={
                                 removingAuthorId === author.id ||
                                 assigningAuthor ||
                                 loading
                               }
-                              className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-red-400/20 bg-red-400/5 px-3 py-2 text-xs font-medium text-red-300 transition hover:bg-red-400/10 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-red-400/20 bg-red-400/5 px-2.5 py-2 text-xs font-medium text-red-300 transition hover:bg-red-400/10 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               {removingAuthorId === author.id ? (
-                                <Loader2 className="size-3.5 animate-spin" />
+                                <Loader2 className="size-3.5 shrink-0 animate-spin" />
                               ) : (
-                                <X className="size-3.5" />
+                                <X className="size-3.5 shrink-0" />
                               )}
 
-                              Remove
+                              <span>Remove</span>
                             </button>
                           </div>
                         ))}
@@ -446,12 +446,13 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                     )}
                   </div>
 
-                  <div className="flex gap-2">
+                  {/* Assign Author */}
+                  <div className="flex flex-col gap-2.5 sm:flex-row">
                     <select
                       value={selectedAuthorId}
                       onChange={(event) => setSelectedAuthorId(event.target.value)}
                       disabled={authorLoading || assigningAuthor || loading}
-                      className="min-w-0 flex-1 rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm text-white outline-none focus:border-white/30 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="min-w-0 flex-1 rounded-xl border border-white/10 bg-slate-900 px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-white/30 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <option value="">Select an author</option>
 
@@ -478,25 +479,26 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                         assigningAuthor ||
                         loading
                       }
-                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                      className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {assigningAuthor ? (
-                        <Loader2 className="size-4 animate-spin" />
+                        <Loader2 className="size-4 shrink-0 animate-spin" />
                       ) : (
-                        <Plus className="size-4" />
+                        <Plus className="size-4 shrink-0" />
                       )}
+
                       Assign
                     </button>
                   </div>
                 </div>
 
                 {/* Actions */}
-                <div className="flex justify-end gap-3 border-t border-white/10 pt-5">
+                <div className="flex flex-col-reverse gap-2.5 border-t border-white/10 pt-4 sm:flex-row sm:justify-end">
                   <button
                     type="button"
                     disabled={loading}
                     onClick={() => setOpen(false)}
-                    className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Cancel
                   </button>
@@ -504,7 +506,7 @@ const EditBookDialog = ({ book, onSuccess }: EditBookDialogProps) => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {loading ? (
                       <>

@@ -63,31 +63,37 @@ const DeleteBookDialog = ({ book, onSuccess }: DeleteBookDialogProps) => {
         </button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="border-white/10 bg-slate-950 text-white sm:max-w-md">
-        <AlertDialogHeader>
-          <div className="mb-2 flex size-11 items-center justify-center rounded-xl bg-red-400/10 text-red-400">
+      <AlertDialogContent className="w-[calc(100%-1.5rem)] max-w-md border-white/10 bg-slate-950 p-5 text-white shadow-2xl shadow-black/30 sm:w-full sm:p-6">
+        <AlertDialogHeader className="space-y-3">
+          <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-red-400/10 text-red-400">
             <AlertTriangle className="size-5" />
           </div>
 
-          <AlertDialogTitle>Delete Book?</AlertDialogTitle>
+          <div className="space-y-1.5">
+            <AlertDialogTitle className="text-lg font-semibold text-white">
+              Delete Book?
+            </AlertDialogTitle>
 
-          <AlertDialogDescription className="text-slate-400">
-            Are you sure you want to delete{" "}
-            <span className="font-semibold text-slate-200">"{book.title}"</span>
-            ? This action cannot be undone.
-          </AlertDialogDescription>
+            <AlertDialogDescription className="text-sm leading-5 text-slate-400">
+              Are you sure you want to delete{" "}
+              <span className="font-semibold text-slate-200">
+                "{book.title}"
+              </span>
+              ? This action cannot be undone.
+            </AlertDialogDescription>
+          </div>
         </AlertDialogHeader>
 
         {error && (
-          <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+          <div className="mt-4 rounded-xl border border-red-400/20 bg-red-400/10 px-3.5 py-3 text-sm leading-5 text-red-300">
             {error}
           </div>
         )}
 
-        <AlertDialogFooter>
+        <AlertDialogFooter className="mt-5 flex flex-col-reverse gap-2.5 sm:flex-row sm:justify-end">
           <AlertDialogCancel
             disabled={loading}
-            className="border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white"
+            className="m-0 min-h-10 rounded-xl border-white/10 bg-white/5 px-4 text-sm font-medium text-slate-300 hover:bg-white/10 hover:text-white"
           >
             Cancel
           </AlertDialogCancel>
@@ -98,7 +104,7 @@ const DeleteBookDialog = ({ book, onSuccess }: DeleteBookDialogProps) => {
               event.preventDefault();
               handleDelete();
             }}
-            className="bg-red-500 text-white hover:bg-red-600"
+            className="m-0 min-h-10 rounded-xl bg-red-500 px-4 text-sm font-semibold text-white hover:bg-red-600"
           >
             {loading ? (
               <>
