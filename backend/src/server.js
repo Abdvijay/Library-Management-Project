@@ -15,7 +15,7 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 const app = Fastify({logger: true,});
 
-await app.register(cors, {origin: "true",
+await app.register(cors, {origin: ["http://localhost:5173","https://library-management-hub.netlify.app"],
     methods: [
     "GET",
     "POST",
