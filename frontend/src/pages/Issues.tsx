@@ -1,6 +1,5 @@
 import {
   AlertCircle,
-  BookOpen,
   CalendarDays,
   Loader2,
   RefreshCw,

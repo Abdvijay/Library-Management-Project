@@ -1,7 +1,6 @@
 import {
   AlertTriangle,
   BookOpen,
-  CalendarDays,
   CheckCircle2,
   Clock3,
   Loader2,
